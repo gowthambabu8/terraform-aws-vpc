@@ -16,4 +16,10 @@ resource "aws_subnet" "name" {
   cidr_block = var.public_subnet_cidr[count.index]
   availability_zone = local.azs_names[count.index]
   map_public_ip_on_launch = true
+  # Name = roboshop-dev-public-us-east-1a
+  tags = merge(
+    local.subnet_final_tags,
+    {
+        Name = "${var.project}-${var.environment}-public-${local.azs_names[count.index]}"
+    } )
 }
