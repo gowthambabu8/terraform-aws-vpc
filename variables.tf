@@ -13,5 +13,10 @@ variable "cidr_block" {
 
 variable "vpc_tags" {
   type = map(string)
-  default = { }
+  default = {}
+}
+
+variable "igw_tags" {
+  type = map(string)
+  default = {}
 }
