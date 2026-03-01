@@ -15,4 +15,5 @@ resource "aws_subnet" "name" {
   vpc_id = aws_vpc.main.id
   cidr_block = var.public_subnet_cidr[count.index]
   availability_zone = local.azs_names[count.index]
+  map_public_ip_on_launch = true
 }
