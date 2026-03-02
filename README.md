@@ -1,7 +1,7 @@
 # This module creates below resources
 
-VPC
-Internet Gateway
+- VPC
+- Internet Gateway
 Subnets -> public, private and database
 Route tables -> public, private and database
 Association and Routes
