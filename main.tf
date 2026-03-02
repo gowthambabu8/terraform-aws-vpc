@@ -141,3 +141,21 @@ resource "aws_route" "database" {
   nat_gateway_id = aws_nat_gateway.main.id
   destination_cidr_block = "0.0.0.0/0"
 }
+
+# public route table association
+resource "aws_route_table_association" "public" {
+  route_table_id = aws_route.public.id
+  subnet_id = aws_subnet.public.id
+}
+
+# private route table association
+resource "aws_route_table_association" "private" {
+  route_table_id = aws_route.private.id
+  subnet_id = aws_subnet.private.id
+}
+
+# database route table association
+resource "aws_route_table_association" "database" {
+  route_table_id = aws_route.database.id
+  subnet_id = aws_subnet.database.id
+}
