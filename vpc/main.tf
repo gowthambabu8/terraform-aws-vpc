@@ -178,11 +178,11 @@ resource "aws_ssm_parameter" "public_subnet" {
 resource "aws_ssm_parameter" "private_subnet" {
   name = "/${var.project}/${var.environment}/private_subnet"
   type = "StringList"
-  value = join(",",aws_subnet.private[*].cidr_block)
+  value = join(",",aws_subnet.private[*].id)
 }
 
 resource "aws_ssm_parameter" "database_subnet" {
   name = "/${var.project}/${var.environment}/database_subnet"
   type = "StringList"
-  value = join(",",aws_subnet.database[*].cidr_block)
+  value = join(",",aws_subnet.database[*].id)
 }
