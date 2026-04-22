@@ -204,3 +204,21 @@ resource "aws_ssm_parameter" "database_subnet_id" {
   type = "StringList"
   value = join(",",aws_subnet.database[*].id)
 }
+
+resource "aws_db_subnet_group" "roboshop" {
+  name       = "${var.project}-${var.environment}"
+  subnet_ids = [aws_subnet.database[0].id,aws_subnet.database[1].id]
+
+  tags = merge(
+        local.common_tags,
+        {
+            Name = "${var.project}-${var.environment}"
+        }
+  )
+}
+
+resource "aws_ssm_parameter" "database_subnet_group_id" {
+  name = "/${var.project}/${var.environment}/database_subnet_group_id"
+  type = "StringList"
+  value = join(",",aws_subnet.database[*].id)
+}
