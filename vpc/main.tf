@@ -222,3 +222,9 @@ resource "aws_ssm_parameter" "database_subnet_group_id" {
   type = "StringList"
   value = join(",",aws_subnet.database[*].id)
 }
+
+resource "aws_ssm_parameter" "database_subnet_group_name" {
+  name = "/${var.project}/${var.environment}/database_subnet_group_name"
+  type = "StringList"
+  value = aws_db_subnet_group.roboshop.name
+}
