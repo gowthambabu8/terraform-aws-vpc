@@ -167,42 +167,49 @@ resource "aws_ssm_parameter" "vpc_id" {
   name = "/${var.project}/${var.environment}/vpc_id"
   type="String"
   value = aws_vpc.main.id
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "public_subnet" {
   name = "/${var.project}/${var.environment}/public_subnet"
   type = "StringList"
   value = join(",",aws_subnet.public[*].id)
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "private_subnet" {
   name = "/${var.project}/${var.environment}/private_subnet"
   type = "StringList"
   value = join(",",aws_subnet.private[*].id)
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "database_subnet" {
   name = "/${var.project}/${var.environment}/database_subnet"
   type = "StringList"
   value = join(",",aws_subnet.database[*].id)
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "public_subnet_id" {
   name = "/${var.project}/${var.environment}/public_subnet_id"
   type = "StringList"
   value = join(",",aws_subnet.public[*].id)
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "private_subnet_id" {
   name = "/${var.project}/${var.environment}/private_subnet_id"
   type = "StringList"
   value = join(",",aws_subnet.private[*].id)
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "database_subnet_id" {
   name = "/${var.project}/${var.environment}/database_subnet_id"
   type = "StringList"
   value = join(",",aws_subnet.database[*].id)
+  overwrite = true
 }
 
 resource "aws_db_subnet_group" "roboshop" {
@@ -221,10 +228,12 @@ resource "aws_ssm_parameter" "database_subnet_group_id" {
   name = "/${var.project}/${var.environment}/database_subnet_group_id"
   type = "StringList"
   value = join(",",aws_subnet.database[*].id)
+  overwrite = true
 }
 
 resource "aws_ssm_parameter" "database_subnet_group_name" {
   name = "/${var.project}/${var.environment}/database_subnet_group_name"
   type = "StringList"
   value = aws_db_subnet_group.roboshop.name
+  overwrite = true
 }
